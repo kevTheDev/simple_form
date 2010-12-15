@@ -145,6 +145,10 @@ module SimpleForm
           
           default_html_options = default_html_options_for_collection(item, value, options, html_options)
 
+          if item.respond_to?(:checked) && item.checked?
+            default_html_options.merge!(:checked => 'checked')
+          end
+
           rendered_item = yield value, text, default_html_options
 
           item_wrapper_tag ? @template.content_tag(item_wrapper_tag, rendered_item) : rendered_item
