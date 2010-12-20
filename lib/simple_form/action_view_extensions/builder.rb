@@ -38,7 +38,9 @@ module SimpleForm
           attribute, collection, value_method, text_method, options, html_options
         ) do |value, text, default_html_options|
           radio = radio_button(attribute, value, default_html_options)
-          collection_label(attribute, value, radio, text, :class => "collection_radio")
+          collection_classes = %w(collection_radio)
+          collection_classes << 'disabled' if default_html_options[:disabled]
+          collection_label(attribute, value, radio, text, :class => collection_classes.join(' '))
         end
       end
 
